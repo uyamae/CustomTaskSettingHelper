@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+	<!-- settings for packaging -->
+	<IsPackable>true</IsPackable>
+	<Version>1.0.0</Version>
+    <Title>CustomTakSettingHelperTask</Title>
+    <Authors>uyamae</Authors>
+    <Description>Help to set up props/targets</Description>
+    <PackageTags>MSBuild</PackageTags>
+    <Copyright>Copyright (c) uyamae 2024</Copyright>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Build.Utilities.Core" Version="17.10.4" PrivateAssets="all" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CustomTaskSettingHelperLib\CustomTaskSettingHelperLib.csproj" />
+  </ItemGroup>
+
+</Project>
