@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <PropertyGroup>
+    <_CustomTaskSettingHelperTask_TaskFolder>$(MSBuildThisDirectory)..\tasks\netstandard2.0</_CustomTaskSettingHelperTask_TaskFolder>
+    <CustomTaskAssembly>$(_CustomTaskSettingHelperTask_TaskFolder)\$(MSBuildThisFileName).dll</CustomTaskAssembly>
+  </PropertyGroup>
+
+  <UsingTask TaskName="$(MSBuildThisFileName).CustomTaskJudgementTask" AssemblyFile~"$(CustomTasksAssembly)" />
+  <UsingTask TaskName="$(MSBuildThisFileName).CustomTaskSettingHelperTask" AssemblyFile~"$(CustomTasksAssembly)" />
+
+  <PropertyGroup>
+    <CustomTaskSettingHelperRootFolder Condition="'$(CustomTaskSettingHelperRootFolder)'==''">$(MSBuildProjectDirectory)</CustomTaskSettingHelperRootFolder>
+    <CustomTaskSettingHelperOutputProps Condition="'$(CustomTaskSettingHelperOutputProps)==''">$(CustomTaskSettingHelperRootFolder)\build\$(MSBuildProjectName).props</CustomTaskSettingHelperOutputProps>
+    <CustomTaskSettingHelperOutputTargets Condition="'$(CustomTaskSettingHelperOutputTargets)==''">$(CustomTaskSettingHelperRootFolder)\build\$(MSBuildProjectName).targets</CustomTaskSettingHelperOutputTargets>
+  </PropertyGroup>
+
+</Project>

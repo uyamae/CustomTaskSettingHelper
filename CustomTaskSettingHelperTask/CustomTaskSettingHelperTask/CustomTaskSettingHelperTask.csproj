@@ -34,6 +34,11 @@
     <ProjectReference Include="..\CustomTaskSettingHelperLib\CustomTaskSettingHelperLib.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Include="build\CustomTaskSettingHelperTask.props" PackagePath="build\" />
+    <Content Include="build\CustomTaskSettingHelperTask.targets" PackagePath="build\" />
+  </ItemGroup>
+
   <Target
     Name="CopyProjectReferencesToPackage"
     DependsOnTargets="ResolveReferences">

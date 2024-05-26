@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <Target Name="CollectTask" BeforeTargets="HelpCustomTaskSetting">
+    <CustomTaskJudgementTask
+      InputFile="%(Compile.Identity)">
+      <Output TargetParameter="Result" ItemName="TaskFile" />
+    </CustomTaskJudgementTask>
+  </Target>
+
+  <Target Name="HelpCustomTaskSetting" Inputs="@(TaskFile)" Outputs="$(CustomTaskSettingHelperOutputProps);$(CustomTaskSettingHelperOutputTargets)" AfterTargets="CompileCore">
+    <CustomTaskSettingHelperTask
+      InputFile="@(TaskFile)"
+      PropsFile="$(CustomTaskSettingHelperOutputProps)"
+      TargetsFile="$(CustomTaskSettingHelperOutputTargets)" />
+  </Target>
+
+</Project>

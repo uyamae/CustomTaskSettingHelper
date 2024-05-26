@@ -13,7 +13,7 @@ namespace CustomTaskSettingHelperTask
         /// CSharp file path 
         /// </summary>
         [Required]
-        public string InputFilePath { get; set; }
+        public string InputFile { get; set; }
         /// <summary>
         /// If a file read from InputFilePath contains CustomTask, Result will be set as same as InputFilePath
         /// </summary>
