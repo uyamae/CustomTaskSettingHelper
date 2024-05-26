@@ -1,4 +1,5 @@
-﻿using Microsoft.Build.Utilities;
+﻿using System;
+using Microsoft.Build.Utilities;
 using Microsoft.Build.Framework;
 using CustomTaskSettingHelperLib;
 
@@ -21,6 +22,18 @@ namespace CustomTaskSettingHelperTask
         public string Result { get; set; }
         public override bool Execute()
         {
+            try
+            {
+                if (CustomTaskJudge.JudgementCSharpFileContainsCustomTaskFromFile(InputFile))
+                {
+                    Result = InputFile;
+                }
+            }
+            catch (Exception e)
+            {
+                Log.LogErrorFromException(e);
+                return false;
+            }
             return true;
         }
     }
