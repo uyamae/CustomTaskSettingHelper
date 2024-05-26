@@ -1,23 +1,42 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
+
     <TargetFramework>netstandard2.0</TargetFramework>
-	<!-- settings for packaging -->
-	<IsPackable>true</IsPackable>
-	<Version>1.0.0</Version>
+    <!-- settings for packaging -->
+    <IsPackable>true</IsPackable>
+    <Version>1.0.0</Version>
     <Title>CustomTakSettingHelperTask</Title>
     <Authors>uyamae</Authors>
     <Description>Help to set up props/targets</Description>
     <PackageTags>MSBuild</PackageTags>
     <Copyright>Copyright (c) uyamae 2024</Copyright>
+    <!-- add the target CopyProjectReferencesToPackage to TargetsForTfmSpecificBuildOutput -->
+    <TargetsForTfmSpecificBuildOutput>$(TargetsForTfmSpecificBuildOutput);CopyProjectReferencesToPackage</TargetsForTfmSpecificBuildOutput>
+    <!-- specify output directory -->
+    <BuildOutputTargetFolder>tasks</BuildOutputTargetFolder>
+
+    <NoWarn>NU5100</NoWarn>
+
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.Build.Utilities.Core" Version="17.10.4" PrivateAssets="all" />
+    <PackageReference
+      Include="Microsoft.Build.Utilities.Core" Version="17.10.4" PrivateAssets="all" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\CustomTaskSettingHelperLib\CustomTaskSettingHelperLib.csproj" />
   </ItemGroup>
+
+  <Target
+    Name="CopyProjectReferencesToPackage"
+    DependsOnTargets="ResolveReferences">
+    <ItemGroup>
+      <BuiltOutputInPackage
+        Include="@(ReferenceCopyLocalPaths)"
+        TargetPath="%(ReferenceCopyLocalPaths.DestinationSubPath)" />
+    </ItemGroup>
+  </Target>
 
 </Project>
