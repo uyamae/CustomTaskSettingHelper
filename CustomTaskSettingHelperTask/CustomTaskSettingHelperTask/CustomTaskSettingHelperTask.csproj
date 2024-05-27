@@ -20,14 +20,14 @@
 
     <NoWarn>NU5100</NoWarn>
 
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+
+    <IncludeSymbols>False</IncludeSymbols>
+
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference
-      Include="Microsoft.Build.Utilities.Core"
-      Version="17.10.4"
-      PrivateAssets="all"
-      ExcludeAssets="Runtime" />
+    <PackageReference Include="Microsoft.Build.Utilities.Core" Version="17.10.4" PrivateAssets="all" ExcludeAssets="Runtime" />
   </ItemGroup>
 
   <ItemGroup>
@@ -39,25 +39,15 @@
     <Content Include="build\CustomTaskSettingHelperTask.targets" PackagePath="build\" />
   </ItemGroup>
 
-  <Target
-    Name="CopyProjectReferencesToPackage"
-    DependsOnTargets="ResolveReferences">
+  <Target Name="CopyProjectReferencesToPackage" DependsOnTargets="ResolveReferences">
     <ItemGroup>
-      <BuiltOutputInPackage
-        Include="@(ReferenceCopyLocalPaths)"
-        TargetPath="%(ReferenceCopyLocalPaths.DestinationSubPath)" />
+      <BuiltOutputInPackage Include="@(ReferenceCopyLocalPaths)" TargetPath="%(ReferenceCopyLocalPaths.DestinationSubPath)" />
     </ItemGroup>
   </Target>
   <!-- add the generated deps.json file to package -->
-  <Target
-    Name="AddBuildDepencyFileToBuiltProjectOutputGroupOutput"
-    BeforeTargets="BuiltProjectOutputGroup"
-    Condition=" '$(GenerateDependencyFile)' == 'true' ">
+  <Target Name="AddBuildDepencyFileToBuiltProjectOutputGroupOutput" BeforeTargets="BuiltProjectOutputGroup" Condition=" '$(GenerateDependencyFile)' == 'true' ">
     <ItemGroup>
-      <BuiltProjectOutputGroupOutput
-        Include="$(ProjectDepsFilePath)"
-        TargetPath="$(ProjectDepsFileName)"
-        FinalOutputPath="$(ProjectDepsFIlePath)" />
+      <BuiltProjectOutputGroupOutput Include="$(ProjectDepsFilePath)" TargetPath="$(ProjectDepsFileName)" FinalOutputPath="$(ProjectDepsFIlePath)" />
     </ItemGroup>
   </Target>
 
