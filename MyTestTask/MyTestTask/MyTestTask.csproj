@@ -2,6 +2,27 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <!-- settings for packaging -->
+    <IsPackable>true</IsPackable>
+    <Version>1.0.0</Version>
+    <Title>MyTestTask</Title>
+    <Authors>uyamae</Authors>
+    <Description>tast</Description>
+    <PackageTags>MSBuild</PackageTags>
+    <Copyright>Copyright (c) uyamae 2024</Copyright>
+    <!-- add the target CopyProjectReferencesToPackage to TargetsForTfmSpecificBuildOutput -->
+    <TargetsForTfmSpecificBuildOutput>$(TargetsForTfmSpecificBuildOutput);CopyProjectReferencesToPackage</TargetsForTfmSpecificBuildOutput>
+    <!-- specify output directory -->
+    <BuildOutputTargetFolder>tasks</BuildOutputTargetFolder>
+    <!-- generate deps.json -->
+    <GenerateDependencyFile>true</GenerateDependencyFile>
+
+    <NoWarn>NU5100</NoWarn>
+
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+
+    <IncludeSymbols>False</IncludeSymbols>
+
   </PropertyGroup>
 
 </Project>

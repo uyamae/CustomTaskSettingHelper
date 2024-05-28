@@ -14,7 +14,7 @@ namespace CustomTaskSettingHelperTask
         /// CSharp file path 
         /// </summary>
         [Required]
-        public string InputFile { get; set; }
+        public string InputFilePath { get; set; }
         /// <summary>
         /// If a file read from InputFilePath contains CustomTask, Result will be set as same as InputFilePath
         /// </summary>
@@ -24,9 +24,9 @@ namespace CustomTaskSettingHelperTask
         {
             try
             {
-                if (CustomTaskJudge.JudgementCSharpFileContainsCustomTaskFromFile(InputFile))
+                if (CustomTaskJudge.JudgementCSharpFileContainsCustomTaskFromFile(InputFilePath))
                 {
-                    Result = InputFile;
+                    Result = InputFilePath;
                 }
             }
             catch (Exception e)

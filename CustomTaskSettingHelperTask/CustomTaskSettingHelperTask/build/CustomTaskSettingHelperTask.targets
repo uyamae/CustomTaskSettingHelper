@@ -3,16 +3,16 @@
 
   <Target Name="CollectTask" BeforeTargets="HelpCustomTaskSetting">
     <CustomTaskJudgementTask
-      InputFile="%(Compile.Identity)">
+      InputFilePath="%(Compile.Identity)">
       <Output TargetParameter="Result" ItemName="TaskFile" />
     </CustomTaskJudgementTask>
   </Target>
 
   <Target Name="HelpCustomTaskSetting" Inputs="@(TaskFile)" Outputs="$(CustomTaskSettingHelperOutputProps);$(CustomTaskSettingHelperOutputTargets)" AfterTargets="CompileCore">
     <CustomTaskSettingHelperTask
-      InputFile="@(TaskFile)"
-      PropsFile="$(CustomTaskSettingHelperOutputProps)"
-      TargetsFile="$(CustomTaskSettingHelperOutputTargets)" />
+      InputFilePaths="@(TaskFile)"
+      PropsFilePath="$(CustomTaskSettingHelperOutputProps)"
+      TargetsFilePath="$(CustomTaskSettingHelperOutputTargets)" />
   </Target>
 
 </Project>

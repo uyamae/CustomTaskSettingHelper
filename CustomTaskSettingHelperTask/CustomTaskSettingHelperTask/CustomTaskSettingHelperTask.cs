@@ -10,11 +10,11 @@ namespace CustomTaskSettingHelperTask
     public class CustomTaskSettingHelperTask : Task
     {
         [Required]
-        public string InputFile { get; set; }
+        public string InputFilePaths { get; set; }
         [Required]
-        public string PropsFile { get; set; }
+        public string PropsFilePath { get; set; }
         [Required]
-        public string TargetsFile { get; set; }
+        public string TargetsFilePath { get; set; }
 
         public override bool Execute()
         {
